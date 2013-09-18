@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="user-scalable=no, initial-scale=1, width=device-width" /><!-- Do not change this! -->
@@ -25,18 +25,24 @@
 		
 		<!-- Other frameworks -->
 		<script type="text/javascript" src="js/energize-min.js"></script><!-- for speeding op tap events -->
-		
-		<!-- Application -->
+        <script type="text/javascript" src="js/zepto.min.js"></script>
+        <script type="text/javascript" src="js/zepto.onpress.js"></script>
+
+
+        <!-- Application -->
 		<script type="text/javascript">window.indexFile = "index_smartphone.html"; </script>
 		<script type="text/javascript" src="js/application.core.js"></script>
-		
-		<title>jpHolo</title>
+        <script type="text/javascript" charset="utf-8" src="SQLitePlugin.js"></script>
+
+
+
+        <title>MySchool</title>
 	</head>
 	<body>
 		<div id="indexPage" data-role="page" data-theme="a"><!-- id to tie the page event to this specific page -->
 			
 			<!-- left panel  -->
-			<div id="panelMenuIndex" data-role="panel" data-theme="b" data-position="left" data-display="overlay" data-dismissible="true" data-position-fixed="true" data-swipe-close="true" data-animate="true">
+			<div id="panelMenuIndex" data-role="panel" data-theme="b" data-position="left" data-display="overlay" data-dismissible="true" data-position-fixed="true" data-swipe-open="true" data-swipe-close="true" data-animate="true">
 				<ul id="panelMenuIndexUL" data-theme="b" data-role="listview"></ul>
 			</div><!-- here you see why in the javascript there is a page event: initPageVarsOnShow('Index'); and: initPageVarsOnCreate('Index'); -->
 			<!-- /panel -->
@@ -47,42 +53,31 @@
 			</div><!-- here you see why in the javascript there is a page event: initPageVarsOnShow('Index'); and: initPageVarsOnCreate('Index'); -->
 			<!-- /panel -->
 			
-			<div data-role="header" data-tap-toggle="false" data-position="fixed" data-theme="a" class="headerSticky">
+			<div data-role="header" data-tap-toggle="false" data-position="fixed" data-theme="a" class="headerRed">
 				<div>
 					<p class="headerBarText"><img id="headerTitleIndex" onclick="togglePanel('#panelMenu' + window.localStorage.getItem('divIdGlobal'));" class="headerIconTitle" src="images/icons/ic_launcher_full_menu.png" /><img id="headerShareIndex" onclick="share(window.localStorage.getItem('shareTagSubject'),window.localStorage.getItem('shareTagText'));" class="headerIconShare" src="images/icons/ic_action_share_header.png" /><img id="headerOverflowIndex" onclick="togglePanel('#panelMenuRight' + window.localStorage.getItem('divIdGlobal'));" class="headerIconOverflow" src="images/icons/ic_action_overflow_header.png" />
 					&nbsp;</p>
 				</div><!-- populate the panel menu, also with the id Index in this case -->
 			</div><!-- /header -->
 			
-			<div data-role="content" data-theme="a">
-				
-				<h1>Index</h1>
-				<p>Holo Light theme with Dark action bar.</p>
-				<a onclick="clearFirstBoot();" data-role="button">Clear to first boot</a>
-				
-				<h1>About</h1>
-				<p>Get jpHolo on GitHub <a href="https://github.com/teusinkorg/jpHolo" target="_blank">here</a></p>
-				<p>Frameworks and plugins that are used to make this application template</p>
-				<p>- Platform: <a href="http://phonegap.com/" target="_blank">PhoneGap</a><br />
-				- Platform: <a href="http://jquerymobile.com/" target="_blank">jQuery Mobile</a><br />
-				- Web: <a href="http://www.androidicons.com/" target="_blank">Android Icons</a><br />
-				- jQuery Mobile plugin: <a href="https://github.com/teusinkorg/energize.js" target="_blank">Energize.js</a><br />
-				- PhoneGap plugin: <a href="http://teusink.blogspot.nl/2013/04/phonegap-android-share-plugin.html" target="_blank">Share</a><br />
-				- PhoneGap plugin: <a href="http://teusink.blogspot.nl/2013/04/phonegap-android-toast-plugin.html" target="_blank">Toast</a><br />
-				- PhoneGap plugin: <a href="http://teusink.blogspot.nl/2013/08/phonegap-android-appstore-plugin.html" target="_blank">Appstore</a><br />
-				- PhoneGap plugin: PackageVersion<br />
-				</p>
-				
-				<h1>Suggestions</h1>
-				<p>- jQuery Mobile plugin: <a href="http://jqmiconpack.andymatthews.net/#/" target="_blank">JQM Icons</a><br />
-				- PhoneGap plugin: <a href="https://github.com/Red-Folder/Cordova-Plugin-BackgroundService" target="_blank">Background Service</a><br />
-				- PhoneGap plugin: <a href="https://github.com/phonegap-build/PushPlugin" target="_blank">Google Cloud Messaging</a><br />
-				- PhoneGap plugin: <a href="https://github.com/phonegap-build/GAPlugin" target="_blank">Google Analytics</a><br />
-				- PhoneGap plugin: <a href="http://teusink.blogspot.nl/2013/07/phonegap-android-cachecleaner-plugin.html" target="_blank">CacheCleaner</a><br />
-				- PhoneGap plugin: <a href="http://teusink.blogspot.nl/2013/04/phonegap-android-downloader-plugin.html" target="_blank">Downloader</a><br />
-				</p>
-				
-			</div><!-- /content -->
+			<div data-role="content" data-theme="a" id="indexContent">
+                <a href="#sixthPage" style="background:#E82800;border:none;width:100%;margin-top:10px;font-size:26px;text-transform:uppercase;color:#FFFFFF;" data-role="button">Take An Exam</a>
+                <a style="background:#E82800;border:none;width:100%;margin-top:10px;font-size:26px;text-transform:uppercase;color:#FFFFFF;margin-bottom:40px;" data-role="button">Study Past Questions</a>
+
+				<h1>Latest News</h1>
+				<ul></ul>
+                <a style="border:1px solid red;background:#E82800;color:#FFFFFF;width:75%;" onclick="displayAllNews();" data-role="button" data-transition="slide">News Headlines You Missed</a>
+                <a style="background:orange;border:none;width:100%;margin-top:10px;font-size:26px;text-transform:uppercase;color:#FFFFFF;margin-top:20px;" data-role="button">Find A Friend</a>
+
+
+                <!--<a style="border:1px solid red;color:red;font-size:18px;width:70%;" onclick="clearFirstBoot();" data-role="button">Take an Exam</a>-->
+
+			</div><!-- /news content -->
+        <div data-role="content" data-theme="a" id="indexContentTest">
+            <h1>Test Content_DB</h1>
+            <ul></ul>
+        </div>
+
 			
 			<div data-role="footer" data-tap-toggle="false" data-position="fixed" data-theme="f" class="footerSticky"><!-- this class makes sure there is a blue line above footer -->
 				<div>
@@ -93,7 +88,7 @@
 		
 		</div><!-- /page -->
 		
-		<div id="secondPage" data-role="page" data-theme="c">
+		<div id="secondPage" data-role="page" data-theme="a">
 			
 			<!-- left panel  -->
 			<div id="panelMenuSecond" data-role="panel" data-theme="b" data-position="left" data-display="overlay" data-dismissible="true" data-position-fixed="true" data-swipe-close="true" data-animate="true">
@@ -107,21 +102,23 @@
 			</div>
 			<!-- /panel -->
 			
-			<div data-role="header" data-tap-toggle="false" data-position="fixed" data-theme="a" class="headerDark"><!-- this class makes sure there is a blue line beneath header -->
+			<div data-role="header" data-tap-toggle="false" data-position="fixed" data-theme="a" class="headerRed"><!-- this class makes sure there is a blue line beneath header -->
 				<div>
 					<p class="headerBarText"><img id="headerTitleSecond" onclick="togglePanel('#panelMenu' + window.localStorage.getItem('divIdGlobal'));" class="headerIconTitle" src="images/icons/ic_launcher_full_menu.png" /><img id="headerShareSecond" onclick="share(window.localStorage.getItem('shareTagSubject'),window.localStorage.getItem('shareTagText'));" class="headerIconShare" src="images/icons/ic_action_share_header.png" /><img id="headerOverflowSecond" onclick="togglePanel('#panelMenuRight' + window.localStorage.getItem('divIdGlobal'));" class="headerIconOverflow" src="images/icons/ic_action_overflow_header.png" />
 					&nbsp;</p>
 				</div>
 			</div><!-- /header -->
 			
-			<div data-role="content" data-theme="c">
+			<div data-role="content" data-theme="a" id="Content">
 				
-				<h1>Page 2</h1>
-				<p>Holo Dark theme page.</p>
+				<h1>News</h1>
+                <ul id="News">
+
+                </ul>
 				
 			</div><!-- /content -->
 			
-			<div data-role="footer" data-tap-toggle="false" data-position="fixed" data-theme="a" class="footerDark"><!-- this class makes sure there is a blue line above footer -->
+			<div data-role="footer" data-tap-toggle="false" data-position="fixed" data-theme="f" class="footerSticky"><!-- this class makes sure there is a blue line above footer -->
 				<div>
 					<img id="footerShareSecond" onclick="share(window.localStorage.getItem('shareTagSubject'),window.localStorage.getItem('shareTagText'));" src="./images/icons/ic_action_share_header.png" class="footerIconLeft">
 					<img id="footerToastSecond" onclick="toast('This is a toast message','short');" src="./images/icons/ic_action_list_header.png" class="footerIconRight">
@@ -130,7 +127,7 @@
 		
 		</div><!-- /page -->
 		
-		<div id="thirdPage" data-role="page" data-theme="e">
+		<div id="thirdPage" data-role="page" data-theme="a">
 			
 			<!-- left panel  -->
 			<div id="panelMenuThird" data-role="panel" data-theme="b" data-position="left" data-display="overlay" data-dismissible="true" data-position-fixed="true" data-swipe-close="true" data-animate="true">
@@ -144,20 +141,231 @@
 			</div>
 			<!-- /panel -->
 			
-			<div data-role="header" data-tap-toggle="false" data-position="fixed" data-theme="e" class="headerDark">
+			<div data-role="header" data-tap-toggle="false" data-position="fixed" data-theme="a" class="headerRed">
 				<div>
-					<p class="headerBarText"><img id="headerTitleThird" onclick="togglePanel('#panelMenu' + window.localStorage.getItem('divIdGlobal'));" class="headerIconTitle" src="images/icons/ic_launcher_full_arrow.png" /><img id="headerShareThird" onclick="share(window.localStorage.getItem('shareTagSubject'),window.localStorage.getItem('shareTagText'));" class="headerIconShare" src="images/icons/ic_action_share_header.png" /><img id="headerOverflowThird" onclick="togglePanel('#panelMenuRight' + window.localStorage.getItem('divIdGlobal'));" class="headerIconOverflow" src="images/icons/ic_action_overflow_header.png" />
+					<p class="headerBarText"><img id="headerTitleThird" onclick="togglePanel('#panelMenu' + window.localStorage.getItem('divIdGlobal'));" class="headerIconTitle" src="images/icons/ic_launcher_full_menu.png" /><img id="headerShareThird" onclick="share(window.localStorage.getItem('shareTagSubject'),window.localStorage.getItem('shareTagText'));" class="headerIconShare" src="images/icons/ic_action_share_header.png" /><img id="headerOverflowThird" onclick="togglePanel('#panelMenuRight' + window.localStorage.getItem('divIdGlobal'));" class="headerIconOverflow" src="images/icons/ic_action_overflow_header.png" />
 					&nbsp;</p>
 				</div>
 			</div><!-- /header -->
-			
-			<div data-role="content" data-theme="e">
-				
-				<h1>Page 3</h1>
-				<p>Holo Light theme page (not very well worked out yet).</p>
-				
-			</div><!-- /content -->
-		
-		</div><!-- /page -->
+
+            <div data-role="content" data-theme="a" id="indexEventsContent">
+                <h1>Upcoming Events</h1>
+                <ul></ul>
+            </div><!-- /content -->
+
+            <div data-role="footer" data-tap-toggle="false" data-position="fixed" data-theme="f" class="footerSticky"><!-- this class makes sure there is a blue line above footer -->
+                <div>
+                    <img id="footerShareThird" onclick="share(window.localStorage.getItem('shareTagSubject'),window.localStorage.getItem('shareTagText'));" src="./images/icons/ic_action_share_header.png" class="footerIconLeft">
+                    <img id="footerToastThird" onclick="toast('This is a toast message','short');" src="./images/icons/ic_action_list_header.png" class="footerIconRight">
+                </div>
+            </div><!-- /footer -->
+
+        </div><!-- /page -->
+
+        <div id="fourthPage" data-role="page" data-theme="a">
+
+            <!-- left panel  -->
+            <div id="panelMenuFourth" data-role="panel" data-theme="b" data-position="left" data-display="overlay" data-dismissible="true" data-position-fixed="true" data-swipe-close="true" data-animate="true">
+                <ul id="panelMenuFourthUL" data-theme="b" data-role="listview"></ul>
+            </div>
+            <!-- /panel -->
+
+            <!-- right panel  -->
+            <div id="panelMenuRightFourth" data-role="panel" data-theme="b" data-position="right" data-display="overlay" data-dismissible="true" data-position-fixed="true" data-swipe-close="true" data-animate="true">
+                <ul id="panelMenuRightFourthUL" data-theme="b" data-role="listview"></ul>
+            </div>
+            <!-- /panel -->
+
+            <div data-role="header" data-tap-toggle="false" data-position="fixed" data-theme="a" class="headerRed"><!-- this class makes sure there is a blue line beneath header -->
+                <div>
+                    <p class="headerBarText"><img id="headerTitleFourth" onclick="togglePanel('#panelMenu' + window.localStorage.getItem('divIdGlobal'));" class="headerIconTitle" src="images/icons/ic_launcher_full_menu.png" /><img id="headerShareFourth" onclick="share(window.localStorage.getItem('shareTagSubject'),window.localStorage.getItem('shareTagText'));" class="headerIconShare" src="images/icons/ic_action_share_header.png" /><img id="headerOverflowFourth" onclick="togglePanel('#panelMenuRight' + window.localStorage.getItem('divIdGlobal'));" class="headerIconOverflow" src="images/icons/ic_action_overflow_header.png" />
+                        &nbsp;</p>
+                </div>
+            </div><!-- /header -->
+
+            <div data-role="content" data-theme="a" id="NewsDetailContent">
+
+                <h1 id="NewsHeadline"></h1>
+                <p id="NewsDetail"></p>
+
+            </div><!-- /content -->
+
+            <div data-role="footer" data-tap-toggle="false" data-position="fixed" data-theme="f" class="footerSticky"><!-- this class makes sure there is a blue line above footer -->
+                <div>
+                    <img id="footerShareFourth" onclick="share(window.localStorage.getItem('shareTagSubject'),window.localStorage.getItem('shareTagText'));" src="./images/icons/ic_action_share_header.png" class="footerIconLeft">
+                    <img id="footerToastFourth" onclick="toast('This is a toast message','short');" src="./images/icons/ic_action_list_header.png" class="footerIconRight">
+                </div>
+            </div><!-- /footer -->
+
+        </div><!-- /page -->
+
+
+        <div id="fifthPage" data-role="page" data-theme="a">
+
+            <!-- left panel  -->
+            <div id="panelMenuFifth" data-role="panel" data-theme="b" data-position="left" data-display="overlay" data-dismissible="true" data-position-fixed="true" data-swipe-close="true" data-animate="true">
+                <ul id="panelMenuFifthUL" data-theme="b" data-role="listview"></ul>
+            </div>
+            <!-- /panel -->
+
+            <!-- right panel  -->
+            <div id="panelMenuRightFifth" data-role="panel" data-theme="b" data-position="right" data-display="overlay" data-dismissible="true" data-position-fixed="true" data-swipe-close="true" data-animate="true">
+                <ul id="panelMenuRightFifthUL" data-theme="b" data-role="listview"></ul>
+            </div>
+            <!-- /panel -->
+
+            <div data-role="header" data-tap-toggle="false" data-position="fixed" data-theme="a" class="headerRed"><!-- this class makes sure there is a blue line beneath header -->
+                <div>
+                    <p class="headerBarText"><img id="headerTitleFifth" onclick="togglePanel('#panelMenu' + window.localStorage.getItem('divIdGlobal'));" class="headerIconTitle" src="images/icons/ic_launcher_full_menu.png" /><img id="headerShareFifth" onclick="share(window.localStorage.getItem('shareTagSubject'),window.localStorage.getItem('shareTagText'));" class="headerIconShare" src="images/icons/ic_action_share_header.png" /><img id="headerOverflowFourth" onclick="togglePanel('#panelMenuRight' + window.localStorage.getItem('divIdGlobal'));" class="headerIconOverflow" src="images/icons/ic_action_overflow_header.png" />
+                        &nbsp;</p>
+                </div>
+            </div><!-- /header -->
+
+            <div data-role="content" data-theme="a" id="NewsAllContent">
+
+                <ul></ul>
+
+            </div><!-- /content -->
+
+            <div data-role="footer" data-tap-toggle="false" data-position="fixed" data-theme="f" class="footerSticky"><!-- this class makes sure there is a blue line above footer -->
+                <div>
+                    <img id="footerShareFifth" onclick="share(window.localStorage.getItem('shareTagSubject'),window.localStorage.getItem('shareTagText'));" src="./images/icons/ic_action_share_header.png" class="footerIconLeft">
+                    <img id="footerToastFifth" onclick="toast('This is a toast message','short');" src="./images/icons/ic_action_list_header.png" class="footerIconRight">
+                </div>
+            </div><!-- /footer -->
+
+        </div><!-- /page -->
+
+        <div id="sixthPage" data-role="page" data-theme="a">
+
+            <!-- left panel  -->
+            <div id="panelMenuSixth" data-role="panel" data-theme="b" data-position="left" data-display="overlay" data-dismissible="true" data-position-fixed="true" data-swipe-close="true" data-animate="true">
+                <ul id="panelMenuSixthUL" data-theme="b" data-role="listview"></ul>
+            </div>
+            <!-- /panel -->
+
+            <!-- right panel  -->
+            <div id="panelMenuRightSixth" data-role="panel" data-theme="b" data-position="right" data-display="overlay" data-dismissible="true" data-position-fixed="true" data-swipe-close="true" data-animate="true">
+                <ul id="panelMenuRightSixthUL" data-theme="b" data-role="listview"></ul>
+            </div>
+            <!-- /panel -->
+
+            <div data-role="header" data-tap-toggle="false" data-position="fixed" data-theme="a" class="headerRed"><!-- this class makes sure there is a blue line beneath header -->
+                <div>
+                    <p class="headerBarText"><img id="headerTitleSixth" onclick="togglePanel('#panelMenu' + window.localStorage.getItem('divIdGlobal'));" class="headerIconTitle" src="images/icons/ic_launcher_full_menu.png" /><img id="headerShareSixth" onclick="share(window.localStorage.getItem('shareTagSubject'),window.localStorage.getItem('shareTagText'));" class="headerIconShare" src="images/icons/ic_action_share_header.png" /><img id="headerOverflowFourth" onclick="togglePanel('#panelMenuRight' + window.localStorage.getItem('divIdGlobal'));" class="headerIconOverflow" src="images/icons/ic_action_overflow_header.png" />
+                        &nbsp;</p>
+                </div>
+            </div><!-- /header -->
+
+            <div data-role="content" data-theme="a" id="ExamContent">
+                <h1>Take An Exam</h1>
+                <p style="font-size:11px;text-align:justify;">Welcome to Myschool's Past Questions Examination Centre, where you will study past questions for FREE!!!</p>
+                <p style="font-size:11px;text-align:justify;">To start studying past questions right now, please select the subjects to be examined on.</p>
+                <p style="font-size:11px;text-align:justify;">English Language is compulsory so you are allowed to select 3 other subjects of your choice below. After selection, submit to enter the exam hall.</p>
+                <form id="subjects" method="post" action="">
+                <div data-role="fieldcontain">
+                    <fieldset data-role="controlgroup">
+                        <legend>Select Your Subjects:<br></legend>
+                        <label><input type="checkbox" checked disabled value="yes" id="english" name="english">English Language (Compulsory)</input></label>
+                        <label><input type="checkbox" id="accounts" name="accounts" value="yes">Accounts - Principles of Accounts</input></label>
+                        <label><input type="checkbox" id="biology" name="biology" value="yes">Biology</input></label>
+                        <label><input type="checkbox" id="chemistry" name="chemistry" value="yes">Chemistry</input></label>
+                        <label><input type="checkbox" id="crk" name="crk" value="yes">Christian Religious Knowledge (CRK)</input></label>
+                        <label><input type="checkbox" id="commerce" name="commerce" value="yes">Commerce</input></label>
+                        <label><input type="checkbox" id="economics" name="economics" value="yes">Economics</input></label>
+                        <label><input type="checkbox" id="geography" name="geography" value="yes">Geography</input></label>
+                        <label><input type="checkbox" id="government" name="government" value="yes">Government</input></label>
+                        <label><input type="checkbox" id="litenglish" name="litenglish" value="yes">Literature in English</input></label>
+                        <label><input type="checkbox" id="math" name="math" value="yes">Mathematics</input></label>
+                        <label><input type="checkbox" id="physics" name="physics" value="yes">Physics</input></label>
+                    </fieldset>
+                </div></form>
+                <a onclick="subjects();" style="background:#E82800;border:none;width:100%;margin-top:10px;font-size:26px;color:#FFFFFF;margin-bottom:5px;" data-role="button">Next</a>
+
+                <ul></ul>
+
+            </div><!-- /content -->
+
+            <div data-role="footer" data-tap-toggle="false" data-position="fixed" data-theme="f" class="footerSticky"><!-- this class makes sure there is a blue line above footer -->
+                <div>
+                    <img id="footerShareSixth" onclick="share(window.localStorage.getItem('shareTagSubject'),window.localStorage.getItem('shareTagText'));" src="./images/icons/ic_action_share_header.png" class="footerIconLeft">
+                    <img id="footerToastSixth" onclick="toast('This is a toast message','short');" src="./images/icons/ic_action_list_header.png" class="footerIconRight">
+                </div>
+            </div><!-- /footer -->
+
+        </div><!-- /page -->
+
+        <div id="seventhPage" data-role="page" data-theme="a">
+
+            <!-- left panel  -->
+            <div id="panelMenuSeventh" data-role="panel" data-theme="b" data-position="left" data-display="overlay" data-dismissible="true" data-position-fixed="true" data-swipe-close="true" data-animate="true">
+                <ul id="panelMenuSeventhUL" data-theme="b" data-role="listview"></ul>
+            </div>
+            <!-- /panel -->
+
+            <!-- right panel  -->
+            <div id="panelMenuRightSeventh" data-role="panel" data-theme="b" data-position="right" data-display="overlay" data-dismissible="true" data-position-fixed="true" data-swipe-close="true" data-animate="true">
+                <ul id="panelMenuRightSeventhUL" data-theme="b" data-role="listview"></ul>
+            </div>
+            <!-- /panel -->
+
+            <div data-role="header" data-tap-toggle="false" data-position="fixed" data-theme="a" class="headerRed"><!-- this class makes sure there is a blue line beneath header -->
+                <div>
+                    <p class="headerBarText"><img id="headerTitleSeventh" onclick="togglePanel('#panelMenu' + window.localStorage.getItem('divIdGlobal'));" class="headerIconTitle" src="images/icons/ic_launcher_full_menu.png" /><img id="headerShareFifth" onclick="share(window.localStorage.getItem('shareTagSubject'),window.localStorage.getItem('shareTagText'));" class="headerIconShare" src="images/icons/ic_action_share_header.png" /><img id="headerOverflowFourth" onclick="togglePanel('#panelMenuRight' + window.localStorage.getItem('divIdGlobal'));" class="headerIconOverflow" src="images/icons/ic_action_overflow_header.png" />
+                        &nbsp;</p>
+                </div>
+            </div><!-- /header -->
+
+            <div data-role="content" data-theme="a" id="ExamPG2Content">
+
+                <ul></ul>
+
+            </div><!-- /content -->
+
+            <div data-role="footer" data-tap-toggle="false" data-position="fixed" data-theme="f" class="footerSticky"><!-- this class makes sure there is a blue line above footer -->
+                <div>
+                    <img id="footerShareSeventh" onclick="share(window.localStorage.getItem('shareTagSubject'),window.localStorage.getItem('shareTagText'));" src="./images/icons/ic_action_share_header.png" class="footerIconLeft">
+                    <img id="footerToastSeventh" onclick="toast('This is a toast message','short');" src="./images/icons/ic_action_list_header.png" class="footerIconRight">
+                </div>
+            </div><!-- /footer -->
+
+        </div><!-- /page -->
+
+        <div id="eightPage" data-role="page" data-theme="a">
+
+            <!-- left panel  -->
+            <div id="panelMenuEight" data-role="panel" data-theme="b" data-position="left" data-display="overlay" data-dismissible="true" data-position-fixed="true" data-swipe-close="true" data-animate="true">
+                <ul id="panelMenuEightUL" data-theme="b" data-role="listview"></ul>
+            </div>
+            <!-- /panel -->
+
+            <!-- right panel  -->
+            <div id="panelMenuRightEight" data-role="panel" data-theme="b" data-position="right" data-display="overlay" data-dismissible="true" data-position-fixed="true" data-swipe-close="true" data-animate="true">
+                <ul id="panelMenuRightEightUL" data-theme="b" data-role="listview"></ul>
+            </div>
+            <!-- /panel -->
+
+            <div data-role="header" data-tap-toggle="false" data-position="fixed" data-theme="a" class="headerRed"><!-- this class makes sure there is a blue line beneath header -->
+                <div>
+                    <p class="headerBarText"><img id="headerTitleEight" onclick="togglePanel('#panelMenu' + window.localStorage.getItem('divIdGlobal'));" class="headerIconTitle" src="images/icons/ic_launcher_full_menu.png" /><img id="headerShareEight" onclick="share(window.localStorage.getItem('shareTagSubject'),window.localStorage.getItem('shareTagText'));" class="headerIconShare" src="images/icons/ic_action_share_header.png" /><img id="headerOverflowFourth" onclick="togglePanel('#panelMenuRight' + window.localStorage.getItem('divIdGlobal'));" class="headerIconOverflow" src="images/icons/ic_action_overflow_header.png" />
+                        &nbsp;</p>
+                </div>
+            </div><!-- /header -->
+
+            <div data-role="content" data-theme="a" id="ExamPG3Content">
+
+                <ul></ul>
+
+            </div><!-- /content -->
+
+            <div data-role="footer" data-tap-toggle="false" data-position="fixed" data-theme="f" class="footerSticky"><!-- this class makes sure there is a blue line above footer -->
+                <div>
+                    <img id="footerShareEight" onclick="share(window.localStorage.getItem('shareTagSubject'),window.localStorage.getItem('shareTagText'));" src="./images/icons/ic_action_share_header.png" class="footerIconLeft">
+                    <img id="footerToastEight" onclick="toast('This is a toast message','short');" src="./images/icons/ic_action_list_header.png" class="footerIconRight">
+                </div>
+            </div><!-- /footer -->
+
+        </div><!-- /page -->
+
 	</body>
 </html>

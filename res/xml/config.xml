@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <widget id="org.teusink.jpholo" version="1.0" xmlns="http://www.w3.org/ns/widgets">
-    <name>jpHolo</name>
+    <name>MySchool</name>
 	
     <description>
-        Example app with jQuery Mobile, PhoneGap and a native Android interface in holo-style.
+        Nigeria's No.1 Online Education Community.
     </description>
 	
-    <author email="joram.teusink@gmail.com" href="http://www.teusink.org">
-        Teusink.org
+    <author email="contact@myschool.com.ng" href="http://www.myschool.com.ng">
+        MySchool.com.ng
     </author>
 	
 	<!-- Access elements control the Android whitelist. Domains are assumed blocked unless set otherwise -->
@@ -16,6 +16,8 @@
 	<!-- <access origin="https://example.com" subdomains="true" /> such as above, but including subdomains, such as www -->
 	<!-- <access origin=".*" /> Allow all domains, suggested development use only -->
 	<access origin="http://127.0.0.1*" /> <!-- allow local pages -->
+    <access origin="http://myschool.com.ng" />
+
 
 	<!-- <content src="http://mysite.com/myapp.html" /> for external pages -->
 	<content src="index_smartphone.html" />
@@ -31,6 +33,9 @@
 	<preference name="loadUrlTimeoutValue" value="60000" />
 	<preference name="backgroundColor" value="0x000" />
 	<preference name="errorUrl" value="index_smartphone.html" />
+
+
+        <plugin name="SQLitePlugin" value="org.pgsqlite.SQLitePlugin"/>
 
 	<!-- PhoneGap features -->
 	<feature name="Accelerometer"><param name="android-package" value="org.apache.cordova.AccelListener" /></feature>

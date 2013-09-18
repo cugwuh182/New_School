@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eclipse-userlibraries>
+  <library name="libs">
+    <archive path="D:/Users/Chuks/Documents/GitHub/New_School/libs/cordova-2.9.0.jar" />
+    <archive path="D:/Users/Chuks/Documents/GitHub/New_School/libs/android-support-v13.jar" />
+  </library>
+  <library name="dexedLibs">
+    <archive path="D:/Users/Chuks/Documents/GitHub/New_School/bin/dexedLibs/cordova-2.9.0-19120e989a2e74ed2d80e8a65de3b8e5.jar" />
+    <archive path="D:/Users/Chuks/Documents/GitHub/New_School/bin/dexedLibs/android-support-v13-6de5ac3a10eeea3b1c82b6d3a50704ef.jar" />
+  </library>
+</eclipse-userlibraries>
+

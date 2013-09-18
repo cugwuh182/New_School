@@ -29,6 +29,23 @@ body * {
 	white-space: normal !important;
 	word-wrap: break-word !important;
 }
+ul, li {list-style:none;margin:0;}
+/**** Page Content Styling***/
+
+/****IndexPage News List Styling***/
+#indexContent ul {}
+#indexContent li {padding:5px;border:1px solid #EEE;background:#F9F9F9;font-size:14px;margin-left:-39px;}
+/**** All News List Styling ***/
+#NewsAllContent ul {}
+#NewsAllContent li {padding:5px;border:1px solid #EEE;background:#F9F9F9;font-size:14px;margin-left:-39px;}
+/***Events Styling***/
+#indexEventsContent ul {}
+#indexEventsContent li {padding:8px;margin-left:-42px;}
+.day {padding:5px;margin:15px 0px;background:orange;color:#ffffff;font-size:26px;text-align:center;}
+.month{color:#FFFFFF;font-size:14px;text-align:center;}
+.year {color:#FFFFFF;font-size:18px;text-align:center;}
+.detail {color:#BBBBBB;font-size:14px;background:#F9F9F9;padding:0px 10px;min-height:30px;margin-bottom:5px;}
+
 .ui-btn-inner {
 	border-top: 0 !important;
 }
@@ -46,6 +63,13 @@ div.headerDark {
 	z-index: 1001;
 	height: 2.85em;
 	border-bottom: 1px solid #0099CC !important;
+	margin: 0;
+	padding: 0;
+}
+div.headerRed {
+	z-index: 1001;
+	height: 2.85em;
+	border-bottom: 1px solid #F8F8F8 !important;
 	margin: 0;
 	padding: 0;
 }
@@ -159,12 +183,12 @@ h6 {
 }
 p.headerBarText {
 	font-size: 1em;
-	color: #000000;
+	color: #D31D00;
 }
 p.panelTextDivider {
 	font-family: RobotoThin !important;
 	font-weight: normal !important;
-	color: #33B4E5 !important;
+	color: #D31D00 !important;
 	height: 1.875em !important;
 	font-size: 1em !important;
 	margin-bottom: -0.25em !important;
